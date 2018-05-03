@@ -8,13 +8,13 @@
 ```
     <script>window.__initial_state=data</script>
 ```
-*将其写入网页，最后将服务端渲染好的网页返回回去。*<br>
-*接下来客户端会将vuex将写入的initial_state替换为当前的全局状态树，再用这个状态树去检查服务端渲染好的数据有没有问题。遇到没被服务端渲染的组件，再去发异步请求拿数据。*<br>
-*vue2使用了虚拟DOM, 因此对浏览器环境和服务端环境要分开渲染, 要创建两个对应的入口文件。*<br>
-*浏览器入口文件client-entry.js*<br>
-*实例化Vue对象，替换store来跟服务端匹配, 使用$mount直接挂载*<br>
-*服务端入口文件server-entry.js*<br>
-*entry-server.js通过webpack中的vue-server-renderer/server-plugin打包成一个json供服务端vue-server-renderer的createRenderer读取，主要起到每一次SSR服务端请求重新createApp以及匹配路由提前取数据渲染的作用。*<br>
-*node服务端使用上面打包生成的json文件创建了一个 renderer 对象，然后调用其 renderToString 方法并传入包含请求路径的对象作为参数来进行渲染，最后将渲染好的数据即 html 返回.*<br>
+将其写入网页，最后将服务端渲染好的网页返回回去。<br>
+接下来客户端会将vuex将写入的initial_state替换为当前的全局状态树，再用这个状态树去检查服务端渲染好的数据有没有问题。遇到没被服务端渲染的组件，再去发异步请求拿数据。<br>
+vue2使用了虚拟DOM, 因此对浏览器环境和服务端环境要分开渲染, 要创建两个对应的入口文件。<br>
+浏览器入口文件client-entry.js<br>
+实例化Vue对象，替换store来跟服务端匹配, 使用$mount直接挂载<br>
+服务端入口文件server-entry.js<br>
+entry-server.js通过webpack中的vue-server-renderer/server-plugin打包成一个json供服务端vue-server-renderer的createRenderer读取，主要起到每一次SSR服务端请求重新createApp以及匹配路由提前取数据渲染的作用。<br>
+node服务端使用上面打包生成的json文件创建了一个 renderer 对象，然后调用其 renderToString 方法并传入包含请求路径的对象作为参数来进行渲染，最后将渲染好的数据即 html 返回.<br>
 
 
